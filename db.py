@@ -11,10 +11,7 @@ def FindPayments(csvfile:str, who:str = "", value:float = 0.0) -> list | None:
         data = csv.reader(file)
         out = []
         for row in data:
-            print(row)
-            if who == "" and value == 0.0:
-                return data
-            if (who != "" and row[0] == who) or (value != "" and row[1] == value):
+            if (who == "" and value == 0.0) or (who != "" and row[0] == who) or (value != "" and row[1] == value):
                 out.append(row)
         
     return out if len(out)>0 else None
@@ -43,4 +40,6 @@ def AddPayment(csvfile:str, who:str, value:float) -> None:
 
     return   
 
-
+def PrintList(lst:list) -> None:
+    for row in lst:
+        print(f"{row[0]}, {row[1]}")
