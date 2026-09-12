@@ -12,7 +12,7 @@ def main():
     
     db.AddPayment(dbPath,"Gustav",10.0)
 
-    db.FindPayments(dbPath)
+    db.PrintList(db.FindPayments(dbPath))
 
     return
 
