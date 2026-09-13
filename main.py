@@ -25,6 +25,5 @@ def main():
 
     print(db.CurrentBalance(dbPath))
     print("ferdi snakka")
-    return
 
 main()
