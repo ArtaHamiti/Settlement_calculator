@@ -1,6 +1,7 @@
 
 import csv
 
+
 def MakeCSV(csvfile:str) -> None:
     with open(csvfile,mode="w",newline='') as file:
         file.write("who,value,when\n")
@@ -38,7 +39,6 @@ def AddPayment(csvfile:str, who:str, value:float, when:int) -> None:
     with open(csvfile, mode="a", newline='') as file:
         file.write(f"{who},{value},{when}\n")
 
-    return   
 
 def PrintList(lst:list) -> None:
     for row in lst:
@@ -47,7 +47,7 @@ def PrintList(lst:list) -> None:
 def CurrentBalance(csvfile:str) -> dict:
     with open(csvfile, mode="r", newline='') as file:
         data = csv.reader(file)
-        paymentTotals = dict()
+        paymentTotals = {}
         for row in data:
             if row[0] !="who":
                 if row[0] not in paymentTotals:
@@ -56,7 +56,7 @@ def CurrentBalance(csvfile:str) -> dict:
                     paymentTotals[row[0]] += float(row[1])
 
         totalExpenses = 0.0
-        out = dict()
+        out = {}
         for person in paymentTotals:
             totalExpenses+=paymentTotals[person]
             out[person] = 0.0
