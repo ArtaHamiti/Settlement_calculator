@@ -21,19 +21,6 @@ def main():
                 input("Angiv [person,verdi,dato]")
             case _:
                 continue
-
-    db.AddPayment(dbPath,"Gustav",10.0, 120926)
-
-    db.AddPayment(dbPath,"Gustav",20.0, 110926)
-
-    db.AddPayment(dbPath,"Arta",10.0, 110926)
-
-    db.AddPayment(dbPath,"Gustav",10.0, 110926)
-
-    db.AddPayment(dbPath,"Jesper",10.0, 110926)
-
-    db.AddPayment(dbPath,"Arta",30.0, 110926)
-
     db.PrintList(db.FindPayments(dbPath))
 
     print(db.CurrentBalance(dbPath))
