@@ -8,11 +8,18 @@ dbPath = "data.csv"
 
 def main():
 
+    breakOuter = False
 
     while True:
 
+        if breakOuter:
+            break
+        breakOuter = True
+
         arg = input("What csv? ")
         filePath = f"Settlements/{arg}.csv"
+
+
         if not os.path.isfile(filePath):
             while True:
                 newQ = input("Couldn't find file, want new? (y/n) ")
@@ -20,8 +27,9 @@ def main():
                     continue
                 break
             if newQ == "n":
+                breakOuter = False
                 continue
-
+            
             while True:
                 who = input("Who is the settlement for? (separate names by comma) ")
                 whoList = who.split(",")
@@ -36,9 +44,20 @@ def main():
                 whoList.extend(["value","who","when"])
                 df = pd.DataFrame(columns=whoList)
                 df.to_csv(filePath, index=False,header=True)
-
                 break
-    
+        
+        
+    while True:
+        arg = input("What action? (a - add, s - status)")
+
+        match arg:
+            case "a":
+                pass
+            case "s":
+                pass
+            case _:
+                continue
+
         
 
 
