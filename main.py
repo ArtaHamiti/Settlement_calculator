@@ -1,29 +1,46 @@
 
-import db
+
+import os
+import pandas as pd
 
 dbPath = "data.csv"
-
 #db.MakeCSV(dbPath)
 
 def main():
+
+
     while True:
-        print("Velkommen. Velg handling: [1/2/3]")
-        print("1. Se status for hvem som skylder hvem.")
-        print("2. Legg inn et utlegg")
-        print("3. Endre spesifikt utlegg")
 
-
-        arg = input()
-        match arg:
-            case "1":
+        arg = input("What csv? ")
+        filePath = f"Settlements/{arg}.csv"
+        if not os.path.isfile(filePath):
+            while True:
+                newQ = input("Couldn't find file, want new? (y/n) ")
+                if newQ not in ("y","n"):
+                    continue
                 break
-            case "2":
-                input("Angiv [person,verdi,dato]")
-            case _:
+            if newQ == "n":
                 continue
-    db.PrintList(db.FindPayments(dbPath))
 
-    print(db.CurrentBalance(dbPath))
-    print("ferdi snakka")
+            while True:
+                who = input("Who is the settlement for? (separate names by comma) ")
+                whoList = who.split(",")
+                while True:
+                    newQ = input(f"Is {whoList} correct? (y/n) ")
+                    if newQ not in ("y","n"):
+                        continue
+                    break
+                if newQ == "n":
+                    continue
+                
+                whoList.extend(["value","who","when"])
+                df = pd.DataFrame(columns=whoList)
+                df.to_csv(filePath, index=False,header=True)
+
+                break
+    
+        
+
+
 
 main()
